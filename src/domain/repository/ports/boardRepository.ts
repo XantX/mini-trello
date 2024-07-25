@@ -1,8 +1,9 @@
 import { Board } from "@domain/entities/board";
 
-export interface BoardService {
+export interface BoardRepository {
   save(board: Board): Promise<Board>
   update(board: Board): Promise<Board>
-  delete(id: string): void
+  get(id: string): Promise<Board>
   get(): Promise<Board[]>
+  delete(id: string): void
 }
