@@ -1,6 +1,6 @@
 # Aplicación mini Trello
 
-> Arquitectura hexagonal, ReactJs, Vite
+> Arquitectura hexagonal, ReactJs, Vite, Nodejs@20.16.0
 
 Se implementa una copia de trello a pequeña escala siguiente arquitectura hexagonal dejando posibilidad a la integración de una api para el frontal
 
