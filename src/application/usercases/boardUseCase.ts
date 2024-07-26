@@ -5,6 +5,7 @@ export class BoardUseCase {
   constructor(private boardRepository: BoardRepository) { }
 
   async save(board: Board): Promise<Board> {
+    console.log("Guardando", board)
     return this.boardRepository.save(board)
   }
 

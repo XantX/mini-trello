@@ -1,27 +1,27 @@
 import { Column } from "@domain/entities/column";
 
 export class Board {
+  private id: string = "";
   constructor(
-    private _id: string,
-    private _title: string,
-    private _columns: Column[]
+    private title: string,
+    private columns: Column[]
   ) { }
-  public get columns(): Column[] {
-    return this._columns;
+  public getColumns(): Column[] {
+    return this.columns;
   }
-  public set columns(value: Column[]) {
-    this._columns = value;
+  public setColumns(value: Column[]) {
+    this.columns = value;
   }
-  public get title(): string {
-    return this._title;
+  public getTitle(): string {
+    return this.title;
   }
-  public set title(value: string) {
-    this._title = value;
+  public setTitle(value: string) {
+    this.title = value;
   }
-  public get id(): string {
-    return this._id;
+  public getId(): string {
+    return this.id;
   }
-  public set id(value: string) {
-    this._id = value;
+  public setId(value: string) {
+    this.id = value;
   }
 }
