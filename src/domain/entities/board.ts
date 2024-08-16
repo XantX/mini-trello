@@ -1,10 +1,10 @@
 import { Column } from "@domain/entities/column";
 
 export class Board {
-  private id: string = "";
   constructor(
     private title: string,
-    private columns: Column[]
+    private columns: Column[],
+    private id: string
   ) { }
   public getColumns(): Column[] {
     return this.columns;

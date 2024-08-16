@@ -16,6 +16,53 @@
 body {
   margin: 0;
   padding: 0;
-  display: grid;
-  place-content: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente los elementos dentro del header */
+  align-items: center;
+  /* Centra verticalmente los elementos dentro del header */
+  background-color: #333;
+  /* Color de fondo del header */
+  color: white;
+  /* Color del texto en el header */
+  padding: 10px 20px;
+  /* Espaciado interno (padding) */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra para dar profundidad */
+  z-index: 1000;
+  /* Asegura que el header esté por encima de otros elementos */
+}
+
+header .container {
+  width: 100%;
+  /* Ancho máximo del contenido del header */
+  display: flex;
+  justify-content: space-between;
+  /* Distribuye los elementos de izquierda a derecha */
+  align-items: center;
+  /* Alinea los elementos verticalmente en el centro */
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header .nav {
+  display: flex;
+  gap: 15px;
+  /* Espacio entre los elementos de navegación */
+}
+
+header .nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+header .nav a:hover {
+  text-decoration: underline;
 }

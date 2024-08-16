@@ -12,4 +12,8 @@ export class BoardUseCase {
   async get(): Promise<Board[]> {
     return this.boardRepository.get()
   }
+
+  async getById(id: string): Promise<Board> {
+    return this.boardRepository.get(id)
+  }
 }

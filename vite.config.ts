@@ -11,7 +11,8 @@ export default defineConfig({
       '@application': resolve(__dirname, 'src/application'),
       '@infraestructure': resolve(__dirname, 'src/infraestructure'),
       '@context': resolve(__dirname, 'src/context'),
-      '@pages': resolve(__dirname, 'src/pages')
+      '@pages': resolve(__dirname, 'src/pages'),
+      '@component': resolve(__dirname, 'src/component')
     }
   }
 })

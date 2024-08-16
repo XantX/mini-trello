@@ -7,7 +7,6 @@ export class BoardsResponse {
   }
 }
 
-
 export type BoardStorage = {
   id: string,
   title: string,

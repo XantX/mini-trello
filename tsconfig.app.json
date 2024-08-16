@@ -28,7 +28,8 @@
       "@infraestructure/*": ["src/infraestructure/*"],
       "@application/*": ["src/application/*"],
       "@context/*": ["src/context/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@component/*": ["src/component/*"]
     }
   },
   "include": ["src"]

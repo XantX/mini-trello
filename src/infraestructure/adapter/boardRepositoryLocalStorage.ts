@@ -1,7 +1,9 @@
 import { Board } from "@domain/entities/board";
 import { BoardRepository } from "@domain/repository/ports/boardRepository";
-import { BoardsResponse } from "../schemas/boards";
+import { BoardResponseStorage, BoardsResponse, BoardStorage, ColumnStorage, TaskStorage } from "../schemas/boards";
 import { localStorageNames } from "@domain/constant/enum.localstorage";
+import { Column } from "@domain/entities/column";
+import { Task } from "@domain/entities/task";
 
 export class BoardRepositoryLocalStorage implements BoardRepository {
 
@@ -38,10 +40,17 @@ export class BoardRepositoryLocalStorage implements BoardRepository {
   delete(_id: string): void {
     throw new Error("Method not implemented.");
   }
-  parseBoards(parsedBoards: BoardsResponse): BoardsResponse {
-    const boards = parsedBoards.boards.map((boardData: Board) => {
-      return new Board(boardData.getTitle(), boardData.getColumns())
+  parseBoards(parsedBoards: BoardResponseStorage): BoardsResponse {
+    const boards = parsedBoards.boards.map((boardData: BoardStorage) => {
+      const columns: Column[] = boardData.columns.map((column: ColumnStorage) => {
+        const tasks: Task[] = this.parseTask(column.tasks)
+        return new Column(column.id, column.title, column.limit, tasks, column.boardId)
+      })
+      return new Board(boardData.title, columns, boardData.id)
     })
     return new BoardsResponse(boards)
+  }
+  parseTask(tasks: TaskStorage[]): Task[] {
+    return tasks.map((task) => { return new Task(task.id, task.title, task.description, task.columnId, task.boardId) })
   }
 }

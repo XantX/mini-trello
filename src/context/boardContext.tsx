@@ -2,17 +2,21 @@ import { BoardUseCase } from "@application/usercases/boardUseCase";
 import { BoardRepositoryLocalStorage } from "@infraestructure/adapter/boardRepositoryLocalStorage";
 import { createContext, ReactNode, useContext } from "react";
 
-const BoardUseCaseContext = createContext<BoardUseCase | undefined>(undefined)
+interface generalContext {
+  boardUseCase: BoardUseCase,
+}
+const BoardUseCaseContext = createContext<generalContext | undefined>(undefined)
 
 interface BoardUseCaseProviderProps {
   children: ReactNode
 }
 
+export const boardRepositoryLocalStorage = new BoardRepositoryLocalStorage()
+export const boardUseCase = new BoardUseCase(boardRepositoryLocalStorage)
+
 export const BoardUseCaseProvider: React.FC<BoardUseCaseProviderProps> = ({ children }) => {
-  const boardRepositoryLocalStorage = new BoardRepositoryLocalStorage()
-  const boardUseCase = new BoardUseCase(boardRepositoryLocalStorage)
   return (
-    <BoardUseCaseContext.Provider value={boardUseCase}>
+    <BoardUseCaseContext.Provider value={{ boardUseCase }}>
       {children}
     </BoardUseCaseContext.Provider>
   )
@@ -23,5 +27,6 @@ export const useBoardUseCase = (): BoardUseCase => {
   if (!context) {
     throw new Error("useBoardService must be used within a BoardServiceProvider")
   }
-  return context
+  return context.boardUseCase
 }
+
