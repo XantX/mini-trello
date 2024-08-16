@@ -26,14 +26,25 @@ export class BoardRepositoryLocalStorage implements BoardRepository {
   get(id: string): Promise<Board>;
   get(): Promise<Board[]>;
   async get(_id?: unknown): Promise<Board | Board[]> {
-    return new Promise<Board[]>((resolve, _reject) => {
+    return new Promise<Board[] | Board>((resolve, _reject) => {
       const data = localStorage.getItem(localStorageNames.BOARDS)
       if (data == null) {
         resolve([])
       } else {
         const parsedBoards = JSON.parse(data)
         const boards = this.parseBoards(parsedBoards)
-        resolve(boards.boards)
+        console.log("ID", _id)
+        if (_id) {
+          const findedBoard = boards.boards.find(board => board.getId() === _id)
+          if (findedBoard) {
+            console.log("Encontrado", findedBoard)
+            resolve(findedBoard)
+          } else {
+            resolve([])
+          }
+        } else {
+          resolve(boards.boards)
+        }
       }
     })
   }

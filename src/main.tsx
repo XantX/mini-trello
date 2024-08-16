@@ -6,6 +6,7 @@ import { BoardUseCaseProvider } from '@context/boardContext'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from '@pages/error-page'
 import { loader as boardLoader, BoardPage } from '@pages/board.page'
+import { loader as boardsLoader, BoardsMainPage } from '@pages/boards.main.page'
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,11 @@ const router = createBrowserRouter([
     element: <MainPage />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "/board",
+        element: <BoardsMainPage />,
+        loader: boardsLoader
+      },
       {
         path: "/board/:boardId",
         element: <BoardPage />,

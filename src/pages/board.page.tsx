@@ -2,8 +2,14 @@ import { boardUseCase } from "@context/boardContext"
 import { Board } from "@domain/entities/board"
 import { useLoaderData } from "react-router-dom"
 
-export async function loader(param: any) {
-  const board = await boardUseCase.getById(param.boardId)
+interface BoardParams {
+  params: {
+    boardId: string
+  }
+}
+
+export async function loader({ params }: BoardParams) {
+  const board = await boardUseCase.getById(params.boardId)
   return { board }
 }
 
